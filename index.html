@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acordeón para la Guía de Estudio de Economía</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Estilos personalizados para el acordeón */
+        .acordeon-item {
+            border-radius: 0.5rem;
+            margin-bottom: 0.5rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        .acordeon-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            cursor: pointer;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+            background-color: rgba(255, 255, 255, 0.1);
+            width: 100%; /* Asegura que el header ocupe todo el ancho */
+        }
+        .acordeon-header:hover {
+             background-color: rgba(255, 255, 255, 0.2);
+        }
+        .acordeon-header h3 {
+            margin: 0;
+            font-size: 1.25rem;
+            color: #ffffff;
+            flex: 1; /* Permite que el título se expanda y empuje el toggle a la derecha */
+        }
+        .acordeon-contenido {
+            padding: 0 1rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-in-out, padding 0.3s ease-in-out;
+            border-radius: 0.5rem;
+            color: #ffffff;
+        }
+        .acordeon-contenido.show {
+            max-height: 1000px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 0.5rem;
+        }
+        .acordeon-toggle {
+            font-size: 1.5rem;
+            color: #ffffff;
+            transition: transform 0.3s ease;
+            margin-left: 1rem; /* Espacio entre el título y el toggle */
+        }
+        .acordeon-toggle.rotate {
+            transform: rotate(45deg);
+        }
+        .pastel-pink { background-color: #fcd4d4; }
+        .pastel-blue { background-color: #d4e6f1; }
+        .pastel-yellow { background-color: #f4f1de; }
+        .sombra-tenue {
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+        }
+        .texto-claro {
+            color: #ffffff;
+        }
+        .negrita {
+            font-weight: 700;
+        }
+        .separador {
+            margin: 2rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+        }
+        .footer {
+            text-align: center;
+            padding: 1rem;
+            margin-top: 2rem;
+            color: #ffffff;
+            font-size: 0.8rem;
+            border-top: 1px solid rgba(255,255,255,0.2);
+        }
+        /* Media query para hacerlo responsive en móviles */
+        @media (max-width: 768px) {
+            .acordeon-header {
+                flex-direction: row; /* Cambia la dirección del flex a fila */
+                align-items: center; /* Centra verticalmente los elementos */
+                padding: 0.75rem; /* Reduce el padding en móviles */
+            }
+            .acordeon-header h3 {
+                font-size: 1rem; /* Reduce el tamaño del título en móviles */
+                flex: 1; /* El título ocupa el espacio restante */
+            }
+            .acordeon-toggle {
+                font-size: 1.25rem; /* Reduce el tamaño del toggle en móviles */
+                margin-left: 0.5rem; /* Ajusta el margen del toggle */
+            }
+            .acordeon-contenido {
+                padding: 0.75rem; /* Reduce el padding del contenido en móviles */
+            }
+            .acordeon-contenido.show {
+                padding: 0.75rem; /* Reduce el padding del contenido visible en móviles */
+                margin-bottom: 0.75rem; /* Reduce el margen inferior en móviles */
+            }
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-pink-100 to-blue-100 min-h-screen flex flex-col font-sans">
+    <header class="py-6 text-center">
+        <h1 class="text-3xl font-bold text-white tracking-wider bg-gradient-to-r from-pink-500 to-blue-500 bg-clip-text text-transparent">
+            ACORDEÓN PARA LA GUÍA DE ESTUDIO DE ECONOMÍA
+        </h1>
+    </header>
+    <main class="container mx-auto px-4 py-2 flex-grow">
+        <div class="space-y-4">
+            <div class="acordeon-item pastel-pink sombra-tenue">
+                <div class="acordeon-header" onclick="toggleAcordeon(this)">
+                    <h3 class="texto-claro">Introducción a la Economía Circular</h3>
+                    <span class="acordeon-toggle">+</span>
+                </div>
+                <div class="acordeon-contenido">
+                    <p class="texto-claro"><span class="negrita">Modelo de producción y consumo:</span> Reducir residuos y maximizar la reutilización de recursos.</p>
+                    <p class="texto-claro"><span class="negrita">Diseño regenerativo:</span> Mantener materiales en uso el mayor tiempo posible.</p>
+                </div>
+            </div>
+            <div class="acordeon-item pastel-blue sombra-tenue">
+                <div class="acordeon-header" onclick="toggleAcordeon(this)">
+                    <h3 class="texto-claro">Principios Fundamentales</h3>
+                    <span class="acordeon-toggle">+</span>
+                </div>
+                <div class="acordeon-contenido">
+                    <p class="texto-claro"><span class="negrita">Diseño sin desperdicio:</span> Reciclables o biodegradables.</p>
+                    <p class="texto-claro"><span class="negrita">Mantenimiento del valor:</span> Reutilización y remanufactura.</p>
+                    <p class="texto-claro"><span class="negrita">Energías renovables:</span> Minimizar recursos no renovables.</p>
+                    <p class="texto-claro"><span class="negrita">Pensamiento sistémico:</span> Considerar todo el ciclo de vida del producto.</p>
+                </div>
+            </div>
+            <div class="acordeon-item pastel-yellow sombra-tenue">
+                <div class="acordeon-header" onclick="toggleAcordeon(this)">
+                    <h3 class="texto-claro">Economía Lineal vs. Economía Circular</h3>
+                    <span class="acordeon-toggle">+</span>
+                </div>
+                <div class="acordeon-contenido">
+                    <p class="texto-claro"><span class="negrita">Economía Lineal:</span> Extraer, producir, consumir, desechar.</p>
+                    <p class="texto-claro"><span class="negrita">Economía Circular:</span> Reducir, reutilizar, reciclar, regenerar.</p>
+                </div>
+            </div>
+            <div class="acordeon-item pastel-pink sombra-tenue">
+                <div class="acordeon-header" onclick="toggleAcordeon(this)">
+                    <h3 class="texto-claro">Estrategias de Implementación</h3>
+                    <span class="acordeon-toggle">+</span>
+                </div>
+                <div class="acordeon-contenido">
+                    <p class="texto-claro"><span class="negrita">Rediseño de productos:</span> Mejora de durabilidad y reparación.</p>
+                    <p class="texto-claro"><span class="negrita">Materiales reciclados:</span> Reducir la extracción de recursos.</p>
+                    <p class="texto-claro"><span class="negrita">Sistemas de reciclaje:</span> Minimizar residuos.</p>
+                    <p class="texto-claro"><span class="negrita">Economía de funcionalidad:</span> Promover el alquiler en lugar de la propiedad.</p>
+                </div>
+            </div>
+            <div class="acordeon-item pastel-blue sombra-tenue">
+                <div class="acordeon-header" onclick="toggleAcordeon(this)">
+                    <h3 class="texto-claro">Beneficios</h3>
+                    <span class="acordeon-toggle">+</span>
+                </div>
+                <div class="acordeon-contenido">
+                    <p class="texto-claro"><span class="negrita">Reducción de costos:</span> Menos dependencia de materias primas vírgenes.</p>
+                    <p class="texto-claro"><span class="negrita">Impacto ambiental:</span> Menos residuos.</p>
+                    <p class="texto-claro"><span class="negrita">Nuevas oportunidades:</span> Modelos de negocio e innovación.</p>
+                </div>
+            </div>
+            <div class="acordeon-item pastel-yellow sombra-tenue">
+                <div class="acordeon-header" onclick="toggleAcordeon(this)">
+                    <h3 class="texto-claro">Ejemplos de Aplicación</h3>
+                    <span class="acordeon-toggle">+</span>
+                </div>
+                <div class="acordeon-contenido">
+                    <p class="texto-claro"><span class="negrita">Moda sostenible:</span> Textiles reciclados y reventa.</p>
+                    <p class="texto-claro"><span class="negrita">Tecnología:</span> Recuperación de dispositivos electrónicos.</p>
+                    <p class="texto-claro"><span class="negrita">Construcción:</span> Materiales reciclables y edificación modular.</p>
+                    <p class="texto-claro"><span class="negrita">Alimentación:</span> Reutilización y reducción de desperdicios.</p>
+                </div>
+            </div>
+            <div class="acordeon-item pastel-pink sombra-tenue">
+                <div class="acordeon-header" onclick="toggleAcordeon(this)">
+                    <h3 class="texto-claro">Desafíos</h3>
+                    <span class="acordeon-toggle">+</span>
+                </div>
+                <div class="acordeon-contenido">
+                    <p class="texto-claro"><span class="negrita">Infraestructura:</span> Falta de reciclaje adecuado.</p>
+                    <p class="texto-claro"><span class="negrita">Regulación:</span> Barreras y ausencia de incentivos.</p>
+                    <p class="texto-claro"><span class="negrita">Cambio cultural:</span> Adoptar modelos sostenibles.</p>
+                    <p class="texto-claro"><span class="negrita">Inversión:</span> Necesidad de tecnologías limpias.</p>
+                </div>
+            </div>
+            <div class="acordeon-item pastel-blue sombra-tenue">
+                <div class="acordeon-header" onclick="toggleAcordeon(this)">
+                    <h3 class="texto-claro">Tipos de Comunicación</h3>
+                    <span class="acordeon-toggle">+</span>
+                </div>
+                <div class="acordeon-contenido">
+                    <p class="texto-claro"><span class="negrita">Verbal:</span> Habla y escritura (formal/informal).</p>
+                    <p class="texto-claro"><span class="negrita">No verbal:</span> Gestos, lenguaje corporal, tono de voz.</p>
+                    <p class="texto-claro"><span class="negrita">Formal:</span> Documentos oficiales, reuniones.</p>
+                    <p class="texto-claro"><span class="negrita">Informal:</span> Conversaciones cotidianas.</p>
+                    <p class="texto-claro"><span class="negrita">Ascendente:</span> Información de abajo hacia arriba.</p>
+                    <p class="texto-claro"><span class="negrita">Descendente:</span> Información de arriba hacia abajo.</p>
+                    <p class="texto-claro"><span class="negrita">Horizontal:</span> Entre personas del mismo nivel jerárquico.</p>
+                    <p class="texto-claro"><span class="negrita">Digital:</span> Medios electrónicos (correo, redes sociales).</p>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer class="footer">
+        <p>Elaborado por FERNANDA</p>
+    </footer>
+    <script>
+        function toggleAcordeon(header) {
+            const item = header.parentElement;
+            const contenido = header.nextElementSibling;
+            const toggleIcon = header.querySelector('.acordeon-toggle');
+            if (contenido.classList.contains('show')) {
+                contenido.classList.remove('show');
+                toggleIcon.classList.remove('rotate');
+            } else {
+                const acordeonesAbiertos = document.querySelectorAll('.acordeon-contenido.show');
+                const togglesAbiertos = document.querySelectorAll('.acordeon-toggle.rotate');
+                acordeonesAbiertos.forEach(acordeon => acordeon.classList.remove('show'));
+                togglesAbiertos.forEach(toggle => toggle.classList.remove('rotate'));
+                contenido.classList.add('show');
+                toggleIcon.classList.add('rotate');
+            }
+        }
+    </script>
+</body>
+</html>
